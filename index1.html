@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Журнал событий | Алиса</title>
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-secondary: #6b7280;
+            --accent-code: #e5e7eb;
+            --accent-link: #dbeafe;
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin: 0;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Timeline / Cards */
+        .entry {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            margin-bottom: 24px;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .entry:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .entry-header {
+            background: linear-gradient(to right, #f9fafb, #ffffff);
+            padding: 15px 25px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .date-badge {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .entry-content {
+            padding: 25px;
+        }
+
+        /* Content Styling Types */
+        .code-block {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid #e5e7eb;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .data-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+        }
+
+        .file-link {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--accent-link);
+            color: #1e40af;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 5px;
+            transition: background 0.2s;
+        }
+
+        .file-link:hover {
+            background-color: #bfdbfe;
+        }
+
+        .file-link::before {
+            content: "📄";
+            margin-right: 8px;
+        }
+
+        .quote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+            font-style: italic;
+            color: #4b5563;
+            margin: 15px 0;
+        }
+
+        .math-block {
+            font-family: 'Courier New', monospace;
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px dashed #cbd5e1;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Привет, Мир!</h1>
+        <div class="subtitle">Личный журнал заметок и задач</div>
+    </header>
+
+    <!-- 16 Feb -->
+    <div class="entry">
+        <div class="entry-header">
+            <span class="date-badge">16 Февраля 2026</span>
+        </div>
+        <div class="entry-content">
+            <p><strong>Вопрос пользователя:</strong> Как оплатить заказ?</p>
+            <p style="color: var(--text-secondary); font-size: 0.9em;">Найден FAQ-вопрос: Каким способом можно оплатить товар? (sim=0.833)</p>
+            <div class="quote">
+                <strong>Ответ бот-FAQ:</strong> Заказ можно оплатить в приложении.
+            </div>
+        </div>
+    </div>
+
+    <!-- 14 Feb -->
+    <div class="entry">
+        <div class="entry-header">
+            <span class="date-badge">14 Февраля 2026</span>
+        </div>
+        <div class="entry-content">
+            <p>Ответ модели получен.</p>
+        </div>
+    </div>
+
+    <!-- 18 Feb -->
+    <div class="entry">
+        <div class="entry-header">
+            <span class="date-badge">18 Февраля 2026</span>
+        </div>
+        <div class="entry-content">
+            <h3>Чтение из файла и расшифровка</h3>
+            <div class="code-block">
+with open(r"/home/user/2025/201C/Enigme1.txt") as f:
+    encoded_data = f.read().strip()
+
+decoded_message = ''.join(chr(int(code)) for code in encoded_data.split())
+print(decoded_message)
+            </div>
+            <div class="quote">
+                "У каждого поколения есть свой философ, писатель или художник, который захватывает и воплощает в себе идею времени... У нашего поколения есть философ. Он не художник и не писатель. Он программист."
+            </div>
+        </div>
+    </div>
+
+    <!-- 21 Feb -->
+    <div class="entry">
+        <div class="entry-header">
+            <span class="date-badge">21 Февраля 2026</span>
+        </div>
+        <div class="entry-content">
+            <h3>Криптоарифметическая задача (SEND + MORE = MONEY)</h3>
+            <p>Соответствие букв цифрам: {'S': 9, 'E': 5, 'N': 6, 'D': 7, 'M': 1, 'O': 0, 'R': 8, 'Y': 2}</p>
+            <div class="math-block">
+  9567  (SEND)<br>
++ 1085  (MORE)<br>
+------------------------------<br>
+  10652  (MONEY)<br>
+------------------------------<br>
+Проверка: 9567 + 1085 = 10652
+            </div>
+        </div>
+    </div>
+
+    <!-- 25 Feb -->
+    <div class="entry">
+        <div class="entry-header">
+            <span class="date-badge">25 Февраля 2026</span>
+        </div>
+        <div class="entry-content">
+            <h3>Анализ округления чисел</h3>
+            <p>Сравнение методов округления и их влияния на ошибку.</p>
+            
+            <h4>Честное округление (Random Error):</h4>
+            <ul>
+                <li>4.162 -> 4.16 (остаток: +0.00200)</li>
+                <li>4.168 -> 4.17 (остаток: -0.00200)</li>
+                <li>4.174 -> 4.17 (остаток: +0.00400)</li>
+                <li>4.179 -> 4.18 (остаток: -0.00100)</li>
+            </ul>
+
+            <h4>Усечение / Truncation (Systematic Bias):</h4>
+            <ul>
+                <li>4.162 -> 4.16 (остаток: +0.00200)</li>
+                <li>4.168 -> 4.16 (остаток: +0.00800)</li>
+                <li>4.174 -> 4.17 (остаток: +0.00400)</li>
+                <li>4.179 -> 4.17 (остаток: +0.00900)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 07 Mar -->
+    <div class="entry">
+        <div class="entry-header">
+            <span class="date-badge">07 Марта 2026</span>
+        </div>
+        <div class="entry-content">
+            <a href="cats.pptx" class="file-link">Праздничная презентация (cats.pptx)</a>
+        </div>
+    </div>
+
+    <!-- 18 Mar -->
+    <div class="entry">
+        <div class="entry-header">
+            <span class="date-badge">18 Марта 2026</span>
+        </div>
+        <div class="entry-content">
+            <h3>Машинное обучение: Прогноз баллов студента</h3>
+            <div class="code-block">
+# Один прогноз (выложить на свой сайт)
+new_student = pd.DataFrame({'Часы': [5]})
+prediction = regressor.predict(new_student)
+print(f"Студент занимался 5 часов")
+print(f"Прогноз баллов: {prediction[0]:.2f}")
+            </div>
+            
+            <h4>Результаты прогноза (Группа студентов):</h4>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Часы подготовки</th>
+                        <th>Прогноз баллов</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>58.98</td></tr>
+                    <tr><td>3</td><td>67.71</td></tr>
+                    <tr><td>5</td><td>76.45</td></tr>
+                    <tr><td>7</td><td>85.18</td></tr>
+                    <tr><td>10</td><td>98.28</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 21 Mar -->
+    <div class="entry">
+        <div class="entry-header">
+            <span class="date-badge">21 Марта 2026</span>
+        </div>
+        <div class="entry-content">
+            <p>Значение метрики: <strong>0.69</strong></p>
+        </div>
+    </div>
+
+    <!-- 23 Mar -->
+    <div class="entry">
+        <div class="entry-header">
+            <span class="date-badge">23 Марта 2026</span>
+        </div>
+        <div class="entry-content">
+            <h3>Итоговые результаты моделей</h3>
+            
+            <p><strong>Модель 1:</strong></p>
+            <ul>
+                <li>Ошибка на обучении (MSE): 0.03508</li>
+                <li>Ошибка на тесте (MSE): 0.03671</li>
+            </ul>
+
+            <p><strong>Модель 2:</strong></p>
+            <ul>
+                <li>Ошибка на обучении (MSE): 0.00425</li>
+                <li>Ошибка на тесте (MSE): 0.00395</li>
+            </ul>
+            
+            <p style="color: #ef4444; font-style: italic;">Примечание: Нейросеть неинтерпретирована на человеческом уровне.</p>
+        </div>
+    </div>
+
+    <!-- 31 Mar -->
+    <div class="entry">
+        <div class="entry-header">
+            <span class="date-badge">31 Марта 2026</span>
+        </div>
+        <div class="entry-content">
+            <a href="drevo.png" class="file-link">Древо приемного покоя (PNG)</a>
+            <a href="tablica.csv" class="file-link">Сводная таблица (CSV)</a>
+        </div>
+    </div>
+
+    <!-- 01 Apr -->
+    <div class="entry">
+        <div class="entry-header">
+            <span class="date-badge">01 Апреля 2026</span>
+        </div>
+        <div class="entry-content">
+            <h3>СТАТИСТИКА ПРИЕМНОГО ПОКОЯ</h3>
+            <p>Всего пациентов: 10</p>
+            
+            <h4>Распределение по категориям срочности:</h4>
+            <ul>
+                <li>Критическая (1): 1 пациент(а)</li>
+                <li>Высокая (2): 4 пациента</li>
+                <li>Средняя (3): 4 пациента</li>
+                <li>Низкая (4): 1 пациент</li>
+            </ul>
+            
+            <p>Средняя температура: <strong>37.4°C</strong></p>
+
+            <h4>Пациенты по городам:</h4>
+            <p>Екатеринбург, Казань, Москва (2), Нижний Новгород, Новосибирск, Ростов-на-Дону, Самара, Санкт-Петербург, Уфа.</p>
+        </div>
+    </div>
+
+    <!-- 04 Apr to 10 Apr: Medical Diagrams -->
+    <div class="entry">
+        <div class="entry-header">
+            <span class="date-badge">04 - 10 Апреля 2026</span>
+        </div>
+        <div class="entry-content">
+            <h3>Схемы процессов (Draw.io)</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <a href="kkkk.drawio.png" class="file-link">Информация об операции</a>
+                <a href="patient.drawio.png" class="file-link">Схема с пациентом</a>
+                <a href="travma.drawio.png" class="file-link">Схема травматология</a>
+                <a href="stom1.drawio.png" class="file-link">Стоматология Зад.1</a>
+                <a href="vrach2.drawio.png" class="file-link">Врач Зад.2</a>
+                <a href="meds2.drawio.png" class="file-link">Медсестра Зад.2</a>
+                <a href="oper2.drawio.png" class="file-link">Операция Зад.2</a>
+                <a href="vrach 3 m.drawio.png" class="file-link">Врач Зад.3</a>
+                <a href="med3m.drawio.png" class="file-link">Медсестра Зад.3</a>
+                <a href="oper3m.drawio.png" class="file-link">Операция Зад.3</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 13 Apr -->
+    <div class="entry">
+        <div class="entry-header">
+            <span class="date-badge">13 Апреля 2026</span>
+        </div>
+        <div class="entry-content">
+            <h3>Новые схемы (Gigi Series)</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <a href="gig.drawio.png" class="file-link">Врач 1</a>
+                <a href="gigi2.drawio.png" class="file-link">Медсестра 1</a>
+                <a href="gigi3.drawio.png" class="file-link">Операция 1</a>
+                <a href="gigi2.02.drawio.png" class="file-link">Врач 2</a>
+                <a href="gigi3.03.drawio.png" class="file-link">Медсестра 1 (повтор)</a>
+                <a href="gigi4.drawio.png" class="file-link">Врач (вторичный индекс)</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tables & Files Section -->
+    <div class="entry">
+        <div class="entry-header">
+            <span class="date-badge">Архив файлов (Апрель - Май)</span>
+        </div>
+        <div class="entry-content">
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 10px;">
+                    <strong>17/04/2026:</strong> <a href="Tab.ods" class="file-link">Таблица (ODS)</a>
+                </li>
+                <li style="margin-bottom: 10px;">
+                    <strong>29/04/2026:</strong> <a href="Tab8.xlsx" class="file-link">Таблица (XLSX)</a>
+                </li>
+                <li style="margin-bottom: 10px;">
+                    <strong>04/05/2026:</strong> <a href="Tablicat.xlsx" class="file-link">Таблица за 4 мая</a>
+                </li>
+                <li style="margin-bottom: 10px;">
+                    <strong>06/05/2026:</strong> <a href="cross9m.docx" class="file-link">Кроссворд 9 мая</a>
+                </li>
+                <li style="margin-bottom: 10px;">
+                    <strong>12/05/2026:</strong> <a href="tabl.xlsx" class="file-link">Таблица (XLSX)</a>
+                </li>
+                <li style="margin-bottom: 10px;">
+                    <strong>20/05/2026:</strong> <a href="tab201.docx" class="file-link">Таблица задачи (DOCX)</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Алиса. Все права защищены.</p>
+    </footer>
+</div>
+
+</body>
+</html>
